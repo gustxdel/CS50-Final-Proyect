@@ -7,6 +7,10 @@
   }
   * {
     margin: 0;
+    padding: 0;
+  }
+  html {
+    font-size: 62.5%;
   }
   html, body {
     height: 100%;
@@ -14,6 +18,10 @@
   body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    font-size: 1.6rem;
+    background-color: var(--cl-light);
+    min-height: 100vh;
+    
   }
   img, picture, video, canvas, svg {
     display: block;
@@ -27,4 +35,269 @@
   }
   #root, #__next {
     isolation: isolate;
+  }
+
+  :root {
+    --ff-all: 'Roboto', Sans-serif;
+    --cl-light: #F5F5F5;
+    --cl-dark: #3D3939;
+    --cl-accent: #444CF7;
+    --cl-primary: #5EB27B;
+  }
+
+  /* navbar */
+  .container_nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cl-primary);
+    padding: 1rem;
+  }
+  a {
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .container_nav img {
+    width: 20rem;
+    height: auto;
+    padding: 1.6rem;
+  }
+
+  .container_nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0 .8rem;
+    gap: 3.2rem;
+  }
+
+  .container_nav ul li {
+    text-decoration: none;
+  } 
+  
+  .container_nav ul li a,
+  .container_nav ul li a:visited  {
+    text-decoration: none;
+    color: var(--cl-light);
+  }
+
+  @media only screen and (min-width: 768px) {
+    .container_nav {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      background-color: var(--cl-primary);
+    }
+    
+    .container_nav img {
+      width: 36rem;
+      height: auto;
+      padding: 1.6rem;
+      margin-left: 10rem;
+    }
+  
+    .container_nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: right;
+      align-items: center;
+      gap: 3.2rem;
+      margin-right: 10rem;
+    }
+  
+    .container_nav ul li {
+      text-decoration: none;
+    } 
+    
+    .container_nav ul li a {
+      text-decoration: none;
+      color: var(--cl-light);
+    }
+  }
+  /* footer */
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  footer {
+    background-color: var(--cl-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 15rem;
+  }
+
+  footer img {
+    width: 20rem;
+    height: auto;
+    padding: 1.6rem 1.6rem 0 1.6rem;
+  }
+
+  footer p {
+    font-size: 1rem;
+    color: var(--cl-light);
+  }
+
+  /* main landing page */
+
+  .main_body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0 2rem;
+    gap: 5rem;
+  }
+
+  .container_left {
+    text-align: center;
+    padding: 2rem;
+    border: 1px solid var(--cl-accent);
+    border-radius: 2rem ;
+    margin-bottom: 2rem;
+  }
+
+  .container_left h1 {
+    line-height: 1;
+    margin-bottom: 0.8rem;
+  }
+
+  .container_left p {
+    margin-bottom: 1rem;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .container_left button {
+    cursor: pointer;
+    padding: 0 2rem;
+    border-radius: 1rem;
+    border: 0;
+  }
+
+  button a {
+    font-size: 1.2rem;
+  }
+
+  .left, .left:visited {
+    background-color: var(--cl-primary);
+    color: var(--cl-light);
+  }
+
+  button.right {
+    background-color: var(--cl-light);
+    border: 1px solid var(--cl-primary);
+  }
+  
+  .right, .right:visited {
+    color: var(--cl-dark);
+  }
+  
+  .container_right img {
+    display: none;
+  }
+
+  .container_right .cta {
+    background-color: var(--cl-primary);
+    color: var(--cl-light);
+    text-align: center;
+    border-radius: 2rem;
+    padding: 1.5rem;
+
+  }
+  .container_right .cta p {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: .8rem;
+  }
+
+  .cta button {
+    border-radius: 1rem;
+    border: 1px solid var(--cl-accent);
+    background-color: var(--cl-primary);
+    cursor: pointer;
+    padding: 0 2rem;
+  }
+
+  .cta button a, .cta button a:visited {
+    color: var(--cl-accent);
+  }
+  @media only screen and (min-width: 768px) {
+    .main_body {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 2rem;
+    }
+    .container_left{
+      height: 100%;
+      max-width: 380px;
+      margin-left: 7rem;
+    }
+    .container_left h1 {
+      line-height: 1;
+      margin-bottom: 2rem;
+      margin-top: 8rem;
+      font-size: 4rem;
+    }
+    .container_left p {
+      margin-bottom: 5rem;
+    }
+
+    .container_right {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .container_right img {
+      display:  initial;
+      max-width: 400px;
+      height: auto;
+    }
+    .container_right .cta p {
+      max-width: 400px;
+      font-size: 4rem;
+    }
+  }
+
+  @media only screen and (min-width: 1300px) {
+    .main_body {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      padding: 2rem;
+    }
+    .container_right {
+      padding: 2rem;
+      display: flex;
+      flex-direction: row;
+      
+      justify-content: space-between;
+      gap: 10rem;
+    }
+  }
+  
+  .mb-3 {
+    display:flex ;
+    justify-content: center;
+    margin-bottom: .8rem;
+  }
+
+  .btn-primary {
+    background-color: var(--cl-primary);
+    color: var(--cl-light);
+    border: none;
+    border-radius: 1rem;
+    padding: 0 2rem;
   }

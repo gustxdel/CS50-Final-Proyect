@@ -5,21 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
 </head>
 <body>
     <header>
         <div class="container_nav">
+            <a href="/"><img src="{{ url_for('static', filename='logo.svg')}}" alt="logo of budget ark"></a>
             <ul class="nav">
-                <li class="nav_elements">Logo</li>
-                <li class="nav_elements">Home</li>
-                <li class="nav_elements">About</li>
-                <li class="nav_elements">Log In</li>
-                <li class="nav_elements">Wallet</li>
+                <li class="nav_elements"><a href="/" class="nav_link">Home</a></li>
+                <li class="nav_elements"><a href="#" class="nav_link">About</a></li>
+                <li class="nav_elements"><a href="/login" class="nav_link">Login</a></li>
+                <li class="nav_elements"><a href="/register" class="nav_link">Register</a></li>
+                <li class="nav_elements"><a href="#" class="nav_link">Contact</a></li>
             </ul>
         </div>
     </header>
     
     {% block content %}{% endblock %}
+
+    <footer>
+        <a href="/"><img src="{{ url_for('static', filename='logo.svg')}}" alt="logo of budget ark"></a>
+        <p>Copyright 2022</p>
+    </footer>
 </body>
 </html>

@@ -2,6 +2,21 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
-    <h1>Hi!</h1>
+    <div class="main_body">
+        <div class="container_left">
+            <h1>All your finances in one place</h1>
+            <p>Budgeting has never been this easy. Keep control of your finances with just one click. </p>
+            <div class="buttons">
+                <button class="left"><a href="#" class="left">Log In</a></button><button class="right"><a href="/register" class="right">Sign Up</a></button>
+            </div>
+        </div>
+        <div class="container_right">
+            <img src="{{ url_for('static', filename='graph.svg')}}" alt="graph" href="/">
+            <div class="cta">
+                <p>Come join the path of financial freedom</p>
+                <button><a href="/register">Get Started</a></button>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

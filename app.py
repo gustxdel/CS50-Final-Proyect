@@ -11,6 +11,8 @@ app = Flask(__name__)
 
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
+db = SQL("sqlite:///budgetark.db")
+
 @app.route("/", methods=["GET", "POST"])
 def home():
     return render_template("home.html")

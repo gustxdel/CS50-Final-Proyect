@@ -3,17 +3,48 @@
 
 {% block content %}
     <div class="container_form">
-        <form action="/register" method="post">
+        
+        <form action="/register" method="POST">
+            {{ form.hidden_tag() }}
             <div class="mb-3">
-                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
+                <h1 class="register">Register</h1>
             </div>
             <div class="mb-3">
-                <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+                {%if form.username.errors%}
+                {{form.username(class="form-control mx-auto w-auto", placeholder="Username")}}   
+                    {% for error in form.username.errors %}
+                        <span>error</span>
+                    {% endfor %}
+                    {% else %}
+                    {{form.username(class="form-control mx-auto w-auto", placeholder="Username")}}   
+                {% endif %}
+
             </div>
             <div class="mb-3">
-                <input class="form-control mx-auto w-auto" id="confpassword" name="confirmation" placeholder="Confirm Password" type="password">
+                {% if form.password.errors %}
+                {{form.password(class="form-control mx-auto w-auto invalid", placeholder="Password")}}   
+                    {% for error in form.password.errors %}
+                    <span>{{error}}</span>
+                    {% endfor %}
+                {% else %}
+                {{form.password(class="form-control mx-auto w-auto", placeholder="Password")}}   
+                {% endif %}
+
             </div>
-            <div class="mb-3"><button class="btn btn-primary" type="submit">Register</button></div>
+            <div class="mb-3">
+                {% if form.confirm_password.errors %}
+                {{form.confirm_password(class="form-control mx-auto w-auto invalid", placeholder="Confirm Password")}}   
+                    {% for error in form.confirm_password.errors %}
+                    <span>{{error}}</span>
+                    {% endfor %}
+                {% else %}
+                {{form.confirm_password(class="form-control mx-auto w-auto", placeholder="Confirm Password")}}   
+                {% endif %}
+
+            </div>
+            <div class="mb-3">
+                {{form.submit(class="btn btn-primary")}}
+            </div>
         </form>
     </div>
 

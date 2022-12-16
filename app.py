@@ -6,12 +6,15 @@ from flask_session import Session
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 
+from forms import RegistrationForm, LoginForm
 
 app = Flask(__name__)
 
 app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config["SECRET_KEY"]="thisiscs50project"
 
 db = SQL("sqlite:///budgetark.db")
+
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -20,16 +23,18 @@ def home():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    if request.method == "GET":
-        return render_template("register.html")
-    elif request.method == "POST":
+    form=RegistrationForm()
+    if form.validate_on_submit():
         return redirect("/login")
+    return render_template("register.html",form=form)
+   
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if request.method == "GET":
-        return render_template("login.html")
+    form=LoginForm()
+    
+    return render_template("login.html",form=form)
     
     
 if __name__ == "__main__":

@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "${workspaceRoot}/mnt/d/Code/CS50/CS50-Final-Proyect",
+        
+    ]
+}

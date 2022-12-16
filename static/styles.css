@@ -41,7 +41,7 @@
     --ff-all: 'Roboto', Sans-serif;
     --cl-light: #F5F5F5;
     --cl-dark: #3D3939;
-    --cl-accent: #444CF7;
+    --cl-accent: rgb(68, 76, 247);
     --cl-primary: #5EB27B;
   }
 
@@ -291,7 +291,7 @@
   .mb-3 {
     display:flex ;
     justify-content: center;
-    margin-bottom: .8rem;
+    margin-bottom: 1.25rem;
   }
 
   .btn-primary {
@@ -302,3 +302,10 @@
     padding: 0 2rem;
     cursor: pointer;
   }
+
+  .register {
+    border-bottom: 1px solid rgba(68, 76, 247, 0.4);
+    
+  }
+
+ 

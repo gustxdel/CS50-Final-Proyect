@@ -2,17 +2,40 @@
 {% block title %} Log In {% endblock %}
 
 {% block content %}
-    <div class="container_form">
-        <form action="/login" method="post">
-            <div class="mb-3">
-                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
-            </div>
-            <div class="mb-3">
-                <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
-            </div>
-            <div class="mb-3"><button class="btn btn-primary" type="submit">Log In</button></div>
-        </form>
-    </div>
+<div class="container_form">
+        
+    <form action="/login" method="POST">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            <h1 class="register">Log In</h1>
+        </div>
+        <div class="mb-3">
+            {%if form.username.errors%}
+            {{form.username(class="form-control mx-auto w-auto", placeholder="Username")}}   
+                {% for error in form.username.errors %}
+                    <span>error</span>
+                {% endfor %}
+                {% else %}
+                {{form.username(class="form-control mx-auto w-auto", placeholder="Username")}}   
+            {% endif %}
+
+        </div>
+        <div class="mb-3">
+            {% if form.password.errors %}
+            {{form.password(class="form-control mx-auto w-auto invalid", placeholder="Password")}}   
+                {% for error in form.password.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            {% else %}
+            {{form.password(class="form-control mx-auto w-auto", placeholder="Password")}}   
+            {% endif %}
+        </div>    
+        <div class="mb-3">
+            {{form.submit(class="btn btn-primary")}}
+        </div>
+    </form>
+</div>
+
 
 
 {% endblock %}

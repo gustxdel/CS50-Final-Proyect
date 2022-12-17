@@ -7,13 +7,13 @@
     <form action="/login" method="POST">
         {{ form.hidden_tag() }}
         <div class="mb-3">
-            <h1 class="register">Log In</h1>
+            <h1 class="register">Login</h1>
         </div>
         <div class="mb-3">
             {%if form.username.errors%}
-            {{form.username(class="form-control mx-auto w-auto", placeholder="Username")}}   
+            {{form.username(class="form-control mx-auto w-auto is-invalid", placeholder="Username")}}   
                 {% for error in form.username.errors %}
-                    <span>error</span>
+                    <span>{{error}}</span>
                 {% endfor %}
                 {% else %}
                 {{form.username(class="form-control mx-auto w-auto", placeholder="Username")}}   
@@ -22,7 +22,7 @@
         </div>
         <div class="mb-3">
             {% if form.password.errors %}
-            {{form.password(class="form-control mx-auto w-auto invalid", placeholder="Password")}}   
+            {{form.password(class="form-control mx-auto w-auto is-invalid", placeholder="Password")}}   
                 {% for error in form.password.errors %}
                 <span>{{error}}</span>
                 {% endfor %}

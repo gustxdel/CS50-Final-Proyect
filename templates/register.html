@@ -11,18 +11,18 @@
             </div>
             <div class="mb-3">
                 {%if form.username.errors%}
-                {{form.username(class="form-control mx-auto w-auto", placeholder="Username")}}   
+                {{form.username(class="form-control mx-auto w-auto is-invalid", placeholder="Username")}}   
                     {% for error in form.username.errors %}
-                        <span>error</span>
+                        <span>{{error}}</span>
                     {% endfor %}
                     {% else %}
-                    {{form.username(class="form-control mx-auto w-auto", placeholder="Username")}}   
+                    {{form.username(class="form-control mx-auto w-auto ", placeholder="Username")}}   
                 {% endif %}
 
             </div>
             <div class="mb-3">
                 {% if form.password.errors %}
-                {{form.password(class="form-control mx-auto w-auto invalid", placeholder="Password")}}   
+                {{form.password(class="form-control mx-auto w-auto is-invalid", placeholder="Password")}}   
                     {% for error in form.password.errors %}
                     <span>{{error}}</span>
                     {% endfor %}
@@ -33,9 +33,9 @@
             </div>
             <div class="mb-3">
                 {% if form.confirm_password.errors %}
-                {{form.confirm_password(class="form-control mx-auto w-auto invalid", placeholder="Confirm Password")}}   
+                {{form.confirm_password(class="form-control mx-auto w-auto is-invalid", placeholder="Confirm Password")}}   
                     {% for error in form.confirm_password.errors %}
-                    <span>{{error}}</span>
+                    <br><span>{{error}}</span>
                     {% endfor %}
                 {% else %}
                 {{form.confirm_password(class="form-control mx-auto w-auto", placeholder="Confirm Password")}}   

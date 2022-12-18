@@ -1,8 +1,8 @@
-from final import app,db
+from final import app
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 from final.forms import RegistrationForm, LoginForm
 from flask_session import Session
-from final import User
+from final.models import User
 
 
 @app.route("/", methods=["GET", "POST"])

@@ -1,8 +1,10 @@
-from final import app
+from final import app, db
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 from final.forms import RegistrationForm, LoginForm
 from flask_session import Session
-from final.models import User
+from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
+from werkzeug.security import check_password_hash, generate_password_hash
+
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -18,9 +20,12 @@ def account():
 def register():
     form=RegistrationForm()
     if form.validate_on_submit():
-        user=User(username=form.username.data,password=form.password.data)
-        db.session.add(user)
-        db.session.commit()
+        username= form.username.data
+        password= form.password.data
+        confirm= form.confirm_password.data
+        hashcode = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+        db.execute("INSERT INTO users (username, password) VALUES(?, ?)", username, hashcode)
+        
         flash(f"Account created succesfully", category="success")
         return redirect("/login")
     return render_template("register.html",form=form)

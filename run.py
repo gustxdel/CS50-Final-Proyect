@@ -1,6 +1,5 @@
 from flask import Flask
-from final import app, db
+from final import app
 
 if __name__ == "__main__":
-    db.create_all()
     app.run(debug=True)

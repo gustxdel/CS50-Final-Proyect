@@ -15,11 +15,18 @@
         <div class="container_nav">
             <a href="/"><img src="{{ url_for('static', filename='logo.svg')}}" alt="logo of budget ark"></a>
             <ul class="nav">
-                <li class="nav_elements"><a href="/" class="nav_link">Home</a></li>
-                <li class="nav_elements"><a href="#" class="nav_link">About</a></li>
-                <li class="nav_elements"><a href="/login" class="nav_link">Login</a></li>
-                <li class="nav_elements"><a href="/register" class="nav_link">Register</a></li>
-                <li class="nav_elements"><a href="/account" class="nav_link">Account</a></li>
+                {% if session["user_id"] %}
+                    <li class="nav_elements"><a href="/" class="nav_link">Home</a></li>
+                    <li class="nav_elements"><a href="#" class="nav_link">About</a></li>
+                    <li class="nav_elements"><a class="nav_link" href="/logout">Log Out</a></li>
+                    <li class="nav_elements"><a href="/account" class="nav_link">Account</a></li>
+                {% else %}
+                    <li class="nav_elements"><a href="/" class="nav_link">Home</a></li>
+                    <li class="nav_elements"><a href="#" class="nav_link">About</a></li>
+                    <li class="nav_elements"><a href="/login" class="nav_link">Login</a></li>
+                    <li class="nav_elements"><a href="/register" class="nav_link">Register</a></li>
+                    
+                {% endif %}
             </ul>
         </div>
     </header>

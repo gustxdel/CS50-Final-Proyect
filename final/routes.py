@@ -1,19 +1,8 @@
-import os
-
+from final import app,db
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
-from cs50 import SQL
+from final.forms import RegistrationForm, LoginForm
 from flask_session import Session
-from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
-from werkzeug.security import check_password_hash, generate_password_hash
-
-from forms import RegistrationForm, LoginForm
-
-app = Flask(__name__)
-
-app.config["TEMPLATES_AUTO_RELOAD"] = True
-app.config["SECRET_KEY"]="thisiscs50project"
-
-db = SQL("sqlite:///budgetark.db")
+from final import User
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -29,6 +18,9 @@ def account():
 def register():
     form=RegistrationForm()
     if form.validate_on_submit():
+        user=User(username=form.username.data,password=form.password.data)
+        db.session.add(user)
+        db.session.commit()
         flash(f"Account created succesfully", category="success")
         return redirect("/login")
     return render_template("register.html",form=form)
@@ -47,6 +39,4 @@ def login():
 
 
 
-    
-if __name__ == "__main__":
-    app.run(debug=True)
+   

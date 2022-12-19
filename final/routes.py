@@ -20,7 +20,7 @@ def account():
 def register():
     session.clear()
     form=RegistrationForm()
-    if form.validate_on_submit():
+    if request.method=="POST":
         username= form.username.data
         password= form.password.data
         confirm= form.confirm_password.data
@@ -41,22 +41,20 @@ def register():
 def login():
     session.clear()
     form=LoginForm()
-    if form.validate_on_submit():
-        if request.method == "POST":
-            username= form.username.data
-            password= form.password.data
-            rows = db.execute("SELECT * FROM users WHERE username = ?", username)
-            hash= check_password_hash(rows[0]["password"])
+    if request.method=="POST":
+        
+        username=form.username.data
+        rows = db.execute("SELECT * FROM users WHERE username = ?", username)
+        user=rows[0]["username"]
 
-            if username =="gusifer":
-                flash(f"Login unsuccesfully. Incorrect Username or Password", category="danger")    
-                return redirect("/login")
-            else:
-                session["user_id"] = rows[0]["id"]
-                flash(f"Login succesfully", category="success")
-                return redirect("/account")
-    else:    
-        return render_template("login.html",form=form)
+        if form.username.data ==user and check_password_hash(rows[0]["password"],form.password.data):
+            session["user_id"] = rows[0]["id"]
+            flash(f"Login succesfully", category="success")
+            return redirect("/account")
+        else:
+            flash(f"Login unsuccesfully. Incorrect Username or Password", category="danger")    
+            return redirect("/login")   
+    return render_template("login.html",form=form)
 
             
 

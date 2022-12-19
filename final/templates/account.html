@@ -3,6 +3,66 @@
 
 {% block content %}
 
-<h1>Account</h1>
+
+
+<div class="container">
+    <h1>Account</h1>
+    <form action="/account" method="post">
+        <div class="container_flex">
+            <div class="mb-3">
+                {%if form.name.errors%}
+                {{form.name(class="form-control mx-auto w-auto is-invalid", placeholder="Name of Expense")}}
+                    {% for error in form.name.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                    {% else %}
+                    {{form.name(class="form-control mx-auto w-auto", placeholder="Name of Expense")}}
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {%if form.expense.errors%}
+                {{form.expense(class="form-control mx-auto w-auto is-invalid", placeholder="How much did you spend?")}}
+                    {% for error in form.name.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                    {% else %}
+                    {{form.expense(class="form-control mx-auto w-auto", placeholder="How much did you spend?")}}
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{form.submit(class="btn btn-primary")}}
+            </div>
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
 
 {% endblock %}

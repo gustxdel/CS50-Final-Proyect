@@ -1,6 +1,6 @@
 from final import app, db
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
-from final.forms import RegistrationForm, LoginForm
+from final.forms import RegistrationForm, LoginForm, BudgetForm, ExpensesForm
 from flask_session import Session
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -13,9 +13,26 @@ def home():
 
 @app.route("/account", methods=["GET", "POST"])
 def account():
-    return render_template("account.html")
+    form=ExpensesForm()
+    if request.method=="POST":
+        db.execute("INSERT INTO expenses (name, money, userID) VALUES(?, ?, ?)", form.name.data, form.expense.data, session["user_id"])    
+        return redirect("/account")
+    
+    else:
+        rows= db.execute("SELECT name, money FROM expenses WHERE userID =?", session["user_id"])
+        sum=0
+        for row in rows:
+            sum += row['money']
+        
+        return render_template("account.html", form=form, sum=sum, rows=rows)
 
-
+@app.route("/delete", methods=["POST"])
+def delete():
+    name = request.form.get("expense_delete")
+    db.execute("DELETE from expenses where name=? and userID =?", name, session["user_id"])
+    return redirect("/account")
+    
+    
 @app.route("/register", methods=["GET", "POST"])
 def register():
     session.clear()

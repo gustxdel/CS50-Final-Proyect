@@ -48,9 +48,9 @@
           <tr>
             
             <td>{{row['name']}}</td>
-            <td>{{row['money']}}</td>
+            <td>{{row['SUM(money)']}}</td>
             <td>
-                <form action="{{ url_for('delete')}}" method="POST">
+                <form action="/delete" method="POST">
                     <input type="hidden" value="{{row['name']}}" name="expense_delete">
                     {{form.delete(class="btn btn-primary")}}
                 </form>

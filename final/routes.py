@@ -19,17 +19,18 @@ def account():
         return redirect("/account")
     
     else:
-        rows= db.execute("SELECT name, money FROM expenses WHERE userID =?", session["user_id"])
+        rows= db.execute("SELECT name, SUM(money) FROM expenses WHERE userID =? GROUP BY name ORDER BY SUM(money) DESC", session["user_id"])
         sum=0
         for row in rows:
-            sum += row['money']
+            sum += row['SUM(money)']
         
         return render_template("account.html", form=form, sum=sum, rows=rows)
 
 @app.route("/delete", methods=["POST"])
-def delete():
+def delete():    
     name = request.form.get("expense_delete")
     db.execute("DELETE from expenses where name=? and userID =?", name, session["user_id"])
+    flash(f"Item Deleted succesfully", category="success")
     return redirect("/account")
     
     

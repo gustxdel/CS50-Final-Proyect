@@ -348,3 +348,6 @@
     gap: 1rem;
   }
  
+  .bold {
+    font-weight: 700;
+  }

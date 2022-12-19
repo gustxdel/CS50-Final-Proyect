@@ -37,30 +37,32 @@
     <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            
             <th scope="col">Name</th>
             <th scope="col">Total Spent</th>
 
           </tr>
         </thead>
         <tbody>
+        {% for row in rows %}
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
             
+            <td>{{row['name']}}</td>
+            <td>{{row['money']}}</td>
+            <td>
+                <form action="{{ url_for('delete')}}" method="POST">
+                    <input type="hidden" value="{{row['name']}}" name="expense_delete">
+                    {{form.delete(class="btn btn-primary")}}
+                </form>
+            </td>
+        {% endfor %} 
           </tr>
           <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
             
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
+            <td class="bold">TOTAL</td>
             
-          </tr>
+            <td class="bold">{{sum}}</td>
+
         </tbody>
       </table>
 </div>

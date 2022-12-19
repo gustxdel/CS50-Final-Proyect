@@ -22,4 +22,5 @@ class BudgetForm(FlaskForm):
 class ExpensesForm(FlaskForm):
     name = StringField(label='Name',validators=[DataRequired()])
     expense = FloatField(label='Expense', validators=[DataRequired()])
-    submit = SubmitField(label='Submit')    
+    submit = SubmitField(label='Submit')
+    delete = SubmitField(label='Delete')    

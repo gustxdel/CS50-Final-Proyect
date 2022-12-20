@@ -1,0 +1,9 @@
+cs50
+Flask
+Flask-Session
+requests
+Tempfile
+FlaskForm
+wtforms
+wtforms.validators
+werkzeug

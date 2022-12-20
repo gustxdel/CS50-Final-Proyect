@@ -106,4 +106,8 @@ def budget():
             db.execute("UPDATE users SET budget=? WHERE id=?",budget, session["user_id"])    
             flash(f"Budget updated succesfully", category="success")
         return redirect("/account")    
-    return render_template("budget.html", form=form)   
+    return render_template("budget.html", form=form)
+
+@app.route("/about")
+def about():
+    return render_template("about.html")  

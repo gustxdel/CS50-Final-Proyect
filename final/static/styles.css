@@ -390,8 +390,22 @@
   .container_budget {
     height:100px ;
     display: flex;
-    justify-content: center;
+    justify-content: center;  
     
-    
-    
+  }
+
+  /* about page */
+
+  .about {
+    margin-top: 1rem;
+    padding: 3rem;
+    font-size: 1em;
+    max-width: 690px;
+    border: 1px solid var(--cl-primary);
+    border-radius: 10pt;
+  }
+
+  .about span {
+    color: var(--cl-accent);
+    font-weight: 700;
   }

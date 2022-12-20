@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %} Set Budget {% endblock %}
+
+{% block content %}
+
+<div class="container_form">
+    <form action="/budget" method="post">
+        <div class="budget">
+            <div class="mb-3">
+                {%if form.set_budget.errors%}
+                {{form.set_budget(class="form-control mx-auto w-auto is-invalid", placeholder="Budget")}}
+                    {% for error in form.set_budget.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                    {% else %}
+                    {{form.set_budget(class="form-control mx-auto w-auto", placeholder="Budget")}}
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{form.submit(class="btn btn-primary")}}
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock %}

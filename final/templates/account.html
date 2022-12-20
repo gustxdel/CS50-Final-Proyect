@@ -7,7 +7,20 @@
 
 <div class="container">
     <h1>Account</h1>
+    <div class="container_card">
+        <div class="budget_card">
+            {% for row in budget %}
+            <h3>You have spent ${{sum}} of ${{row['budget']}}</h3>
+            {% endfor %}
+            <p>Which is {{total_spent}}% of your monthly budget!</p>
+            <div class="progress">
+                <div class="progress-bar bg-green" role="progressbar" style="width: {{total_spent}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{total_spent}}%</div>
+            </div>
+              
+        </div>
+    </div>
     <form action="/account" method="post">
+        <h2 class="expense">Set Expenses</h2>
         <div class="container_flex">
             <div class="mb-3">
                 {%if form.name.errors%}
@@ -34,6 +47,7 @@
             </div>
         </div>
     </form>
+    <h2 class="expense">Monthly Expenses</h2>
     <table class="table">
         <thead>
           <tr>

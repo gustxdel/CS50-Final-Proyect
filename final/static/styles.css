@@ -13,15 +13,15 @@
     font-size: 62.5%;
   }
   html, body {
-    height: 100%;
+    height: 100vh;
   }
   body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     font-size: 1.6rem;
     background-color: var(--cl-light);
-    min-height: 100vh;
-    
+    height: 100vh;
+    overflow-y: auto;
   }
   img, picture, video, canvas, svg {
     display: block;
@@ -41,7 +41,7 @@
     --ff-all: 'Roboto', Sans-serif;
     --cl-light: #F5F5F5;
     --cl-dark: #3D3939;
-    --cl-accent: rgb(68, 76, 247);
+    --cl-accent: #444cf7;
     --cl-primary: #5EB27B;
   }
 
@@ -89,6 +89,7 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      flex-wrap: nowrap;
       background-color: var(--cl-primary);
     }
     
@@ -119,21 +120,25 @@
   }
   /* footer */
   body {
-    position: relativ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
     
   }
   .container_footer {
-    position: fixed;
-    bottom: 0;
+    
+    
     width: 100%;
   }
   footer {
+    
     background-color: var(--cl-dark);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 15rem;
+    
   }
 
   footer img {
@@ -153,7 +158,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-top: 10rem;
+    
     padding: 0 2rem;
     gap: 5rem;
   }
@@ -240,7 +245,7 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      margin-top: 10rem;
+      
       padding: 2rem;
     }
     .container_left{
@@ -303,11 +308,12 @@
     display:flex ;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     margin-bottom: 1.25rem;
     
 
   }
+  
   .mb-3 {
     display:flex ;
     flex-direction: column;
@@ -350,4 +356,42 @@
  
   .bold {
     font-weight: 700;
+  }
+
+  .container_card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+  .budget_card {
+    border: 1px solid var(--cl-accent);
+    border-radius: 5pt;
+    padding: 2rem;
+    
+  }
+
+  .budget_card p {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .expense {
+    margin-bottom: 2rem;
+    text-decoration: underline;
+    text-decoration-color: rgba(61, 57, 57, 0.2);
+  }
+
+  .bg-green {
+    background-color: #5EB27B;
+  }
+  /* Budget page */
+
+  .container_budget {
+    height:100px ;
+    display: flex;
+    justify-content: center;
+    
+    
+    
   }

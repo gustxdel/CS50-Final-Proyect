@@ -14,17 +14,24 @@ def home():
 @app.route("/account", methods=["GET", "POST"])
 def account():
     form=ExpensesForm()
+    budget=db.execute("SELECT budget FROM users WHERE id=?", session["user_id"])
+        
     if request.method=="POST":
         db.execute("INSERT INTO expenses (name, money, userID) VALUES(?, ?, ?)", form.name.data, form.expense.data, session["user_id"])    
         return redirect("/account")
     
     else:
         rows= db.execute("SELECT name, SUM(money) FROM expenses WHERE userID =? GROUP BY name ORDER BY SUM(money) DESC", session["user_id"])
+        budget=db.execute("SELECT budget FROM users WHERE id=?", session["user_id"])
         sum=0
+        total_spent=0
         for row in rows:
             sum += row['SUM(money)']
-        
-        return render_template("account.html", form=form, sum=sum, rows=rows)
+        for row in budget:
+            if row['budget']== None:
+                return redirect("/budget")
+            total_spent= sum*100 / row['budget']
+        return render_template("account.html", form=form, sum=sum, rows=rows, budget=budget, total_spent=total_spent)
 
 @app.route("/delete", methods=["POST"])
 def delete():    
@@ -75,8 +82,6 @@ def login():
     return render_template("login.html",form=form)
 
             
-
-
 @app.route("/logout")
 def logout():
     """Log user out"""
@@ -86,4 +91,19 @@ def logout():
 
     # Redirect user to login form
     return redirect("/")
-   
+
+
+@app.route("/budget", methods=["GET", "POST"])
+def budget():
+    form=BudgetForm()
+    if request.method=="POST":
+        rows=db.execute("SELECT budget FROM users WHERE id=?", session["user_id"])
+        budget= form.set_budget.data
+        if len(rows) != 1:
+            db.execute("INSERT INTO users (budget) VALUES (?) WHERE id=?",budget, session["user_id"])
+            flash(f"Budget set succesfully", category="success")
+        else:
+            db.execute("UPDATE users SET budget=? WHERE id=?",budget, session["user_id"])    
+            flash(f"Budget updated succesfully", category="success")
+        return redirect("/account")    
+    return render_template("budget.html", form=form)   
